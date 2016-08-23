@@ -41,7 +41,7 @@ class MyPhotoViewController: UIViewController, UICollectionViewDelegate, UIColle
     private var selectedPhotosArray = [PHAsset]()
     
     //选择图片的数量大于给定的数量 给用户提示
-    private var alertController = UIAlertController()
+    private var alertController: UIAlertController!
     
     //创建一个字典 用来存放Cell的唯一标示符 
     private var cellDict = [NSIndexPath: String]()
@@ -71,9 +71,7 @@ class MyPhotoViewController: UIViewController, UICollectionViewDelegate, UIColle
     
     func initAlert() {
         alertController = UIAlertController(title: nil, message: "最多只能选择 \(maxSelectedCount) 张照片", preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) in
-            
-        }))
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
     }
     
     //MARK: - 定义闭包
