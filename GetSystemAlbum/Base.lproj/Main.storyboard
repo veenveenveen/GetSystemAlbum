@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GetSystemAlbum" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,84 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="37v-c6-qwI">
+                                <rect key="frame" x="50" y="100" width="500" height="300"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2U1-bJ-VSC">
+                                <rect key="frame" x="225" y="450" width="150" height="30"/>
+                                <state key="normal" title="从系统相册中选取图片"/>
+                                <connections>
+                                    <action selector="getImgFromIPC:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CXo-Lx-M6z"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lRl-jZ-ArG">
+                                <rect key="frame" x="255" y="500" width="90" height="30"/>
+                                <state key="normal" title="获取多张图片"/>
+                                <connections>
+                                    <segue destination="I5B-Wb-Oul" kind="presentation" id="S5x-iT-6dF"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="37v-c6-qwI" secondAttribute="bottom" constant="200" id="9ld-w5-cLg"/>
+                            <constraint firstItem="lRl-jZ-ArG" firstAttribute="centerX" secondItem="2U1-bJ-VSC" secondAttribute="centerX" id="FVc-KY-fqt"/>
+                            <constraint firstItem="lRl-jZ-ArG" firstAttribute="top" secondItem="2U1-bJ-VSC" secondAttribute="bottom" constant="20" id="I1V-91-ntM"/>
+                            <constraint firstItem="2U1-bJ-VSC" firstAttribute="centerX" secondItem="37v-c6-qwI" secondAttribute="centerX" id="ZEz-OK-Gqu"/>
+                            <constraint firstItem="37v-c6-qwI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="aNU-Cv-maY"/>
+                            <constraint firstAttribute="trailing" secondItem="37v-c6-qwI" secondAttribute="trailing" constant="50" id="hGk-6E-ba7"/>
+                            <constraint firstItem="37v-c6-qwI" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="100" id="mP6-B2-ZVv"/>
+                            <constraint firstItem="2U1-bJ-VSC" firstAttribute="top" secondItem="37v-c6-qwI" secondAttribute="bottom" constant="50" id="tl0-lP-cgF"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="image" destination="37v-c6-qwI" id="bn8-g7-2Lh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="214" y="351"/>
+        </scene>
+        <!--More Pictures View Controller-->
+        <scene sceneID="yAl-s4-VHr">
+            <objects>
+                <viewController id="I5B-Wb-Oul" customClass="MorePicturesViewController" customModule="GetSystemAlbum" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wKO-HR-g3p"/>
+                        <viewControllerLayoutGuide type="bottom" id="80A-6C-j6c"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="svz-K2-CjD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lao-sK-f1g">
+                                <rect key="frame" x="225" y="50" width="150" height="30"/>
+                                <state key="normal" title="从相册中选取多张图片"/>
+                                <connections>
+                                    <action selector="getMorePicture:" destination="I5B-Wb-Oul" eventType="touchUpInside" id="DCe-Jb-647"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4eh-E9-Khz">
+                                <rect key="frame" x="540" y="50" width="30" height="30"/>
+                                <state key="normal" title="返回"/>
+                                <connections>
+                                    <action selector="back:" destination="I5B-Wb-Oul" eventType="touchUpInside" id="Z1O-eO-JUK"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="4eh-E9-Khz" firstAttribute="centerY" secondItem="lao-sK-f1g" secondAttribute="centerY" id="STH-Hy-rHU"/>
+                            <constraint firstAttribute="trailing" secondItem="4eh-E9-Khz" secondAttribute="trailing" constant="30" id="iU2-iE-kRR"/>
+                            <constraint firstItem="lao-sK-f1g" firstAttribute="top" secondItem="svz-K2-CjD" secondAttribute="top" constant="50" id="jUD-kv-CGs"/>
+                            <constraint firstItem="lao-sK-f1g" firstAttribute="centerX" secondItem="svz-K2-CjD" secondAttribute="centerX" id="rKT-bG-QbU"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qKm-Zp-VMP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1075" y="577"/>
         </scene>
     </scenes>
 </document>
